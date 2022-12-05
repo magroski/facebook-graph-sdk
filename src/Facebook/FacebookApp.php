@@ -96,6 +96,16 @@ class FacebookApp implements \Serializable
         return implode('|', [$this->id, $this->secret]);
     }
 
+    public function __serialize()
+    {
+        return [$this->id, $this->secret];
+    }
+
+    public function __unserialize(array $data) : void
+    {
+        $this->__construct($data[0], $data[1]);
+    }
+
     /**
      * Unserializes a string as a FacebookApp entity.
      *
